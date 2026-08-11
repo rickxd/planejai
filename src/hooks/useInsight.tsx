@@ -1,0 +1,73 @@
+import { useCallback, useEffect, useRef, useState } from 'react'
+
+import { buildAIPrompt } from '@/data/aiPrompt'
+import type { SimulationRecord } from '@/data/simulation'
+import { useSimulationStorage } from '@/hooks/useSimulationStorage'
+import { getInsight, type InsightData } from '@/services/aiService'
+
+export const useInsight = (id: string) => {
+  const { getFormData, updateSimulation } = useSimulationStorage()
+
+  const isRequestPending = useRef(false)
+  const [insight, setInsight] = useState<InsightData | null>(() => {
+    const simulation = getFormData(id)
+
+    if (simulation?.insight) {
+      return simulation.insight
+    }
+
+    return null
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  console.log(id)
+  console.log(isLoading)
+
+  // useCallback é necessário pois essa função entra no array de dependências do useEffect
+  const fetchInsight = useCallback(
+    async (simulationId: string) => {
+      const simulation = getFormData(simulationId)
+      if (!simulation) {
+        setError('Simulação não encontrada.')
+        return
+      }
+      isRequestPending.current = true
+      setIsLoading(true)
+      setError(null)
+      console.log(isLoading)
+
+      try {
+        const prompt = buildAIPrompt(simulation)
+        const data = await getInsight(prompt)
+        setInsight(data)
+        console.log(data)
+
+        updateSimulation(simulation.id, {
+          ...simulation,
+          insight: data,
+        } as SimulationRecord)
+        return data
+      } catch {
+        setError('Erro ao gerar o diagnóstico. Tente novamente.')
+        console.log(error)
+      } finally {
+        isRequestPending.current = false
+        setIsLoading(false)
+      }
+    },
+    [getFormData, updateSimulation],
+  )
+
+  useEffect(() => {
+    if (insight || isLoading || error || isRequestPending.current) {
+      return
+    }
+
+    fetchInsight(id).then((data) => {
+      if (!data) return
+      setInsight(data)
+    })
+  }, [id, insight, isLoading, fetchInsight])
+
+  return { insight, isLoading, error, fetchInsight }
+}
