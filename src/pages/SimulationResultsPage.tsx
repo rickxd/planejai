@@ -25,7 +25,12 @@ export function SimulationResultsPage() {
         subtitle="Com base no seu perfil financeiro e objetivos."
       />
       <div className="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <Card icon={Goal} label="Custo da Meta" value={data.goalAmount} subtitle={data.goalName} />
+        <Card
+          icon={Goal}
+          label="Custo da Meta"
+          value={`R$ ${data.goalAmount}`}
+          subtitle={data.goalName}
+        />
         <Card
           icon={CalendarClock}
           label="Prazo"
@@ -46,19 +51,19 @@ export function SimulationResultsPage() {
           <Card
             icon={Wallet}
             label="Renda mensal"
-            value={data.income}
+            value={`R$ ${data.income}`}
             subtitle="Renda total bruta por mês"
           />
           <Card
             icon={CreditCardIcon}
             label="Custos Fixos de Vida"
-            value={data.expenses}
+            value={`R$ ${data.expenses}`}
             subtitle="Gastos essenciais por mês"
           />
           <Card
             icon={Landmark}
             label="Dívidas / Parcelas"
-            value={data.debts}
+            value={`R$ ${data.debts}`}
             subtitle="Valor comprometido em parcelas/depósito"
           />
         </div>

@@ -20,8 +20,6 @@ export const useInsight = (id: string) => {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  console.log(id)
-  console.log(isLoading)
 
   // useCallback é necessário pois essa função entra no array de dependências do useEffect
   const fetchInsight = useCallback(
@@ -34,7 +32,6 @@ export const useInsight = (id: string) => {
       isRequestPending.current = true
       setIsLoading(true)
       setError(null)
-      console.log(isLoading)
 
       try {
         const prompt = buildAIPrompt(simulation)
