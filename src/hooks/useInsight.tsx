@@ -37,7 +37,6 @@ export const useInsight = (id: string) => {
         const prompt = buildAIPrompt(simulation)
         const data = await getInsight(prompt)
         setInsight(data)
-        console.log(data)
 
         updateSimulation(simulation.id, {
           ...simulation,

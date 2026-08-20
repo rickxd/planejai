@@ -24,7 +24,7 @@ export function SimulationResultsPage() {
         title="Resultado da Simulação"
         subtitle="Com base no seu perfil financeiro e objetivos."
       />
-      <div className="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mb-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card
           icon={Goal}
           label="Custo da Meta"
@@ -45,9 +45,9 @@ export function SimulationResultsPage() {
           subtitle="Economia mensal necessária"
         />
       </div>
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3">
         <AIInsightsCard simulationId={data.id} />
-        <div className="order-1 flex flex-col gap-6 lg:order-2">
+        <div className="order-1 flex flex-col gap-4 lg:order-2 lg:gap-6">
           <Card
             icon={Wallet}
             label="Renda mensal"

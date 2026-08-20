@@ -75,19 +75,28 @@ export function SimulationCard({ simulation, onDelete }: SimulationCardProps & A
           </div>
         </div>
       </div>
-      {isDelete && (
-        <div className="bg-card text-foreground mt-3 w-auto flex-col justify-items-center rounded-2xl p-6 shadow-[4px_4px_18px_0px_rgba(0,0,0,0.2)]">
-          <span className="mb-3 flex font-semibold text-red-500">Excluir simulação?</span>
-          <div className="flex gap-3">
-            <Button variant="danger" icon={Trash2} onClick={handleDeleteButton} className="flex-1">
-              Excluir
-            </Button>
-            <Button variant="ghost" icon={X} onClick={toggleDelete}>
-              Cancelar
-            </Button>
-          </div>
-        </div>
-      )}
+      <div
+        className={`transition-all ${isDelete ? 'bg-card text-foreground mt-3 max-h-40 w-auto flex-col justify-items-center overflow-hidden rounded-2xl p-6 opacity-100 shadow-[4px_4px_18px_0px_rgba(0,0,0,0.2)]' : 'max-h-0 opacity-0'}`}
+      >
+        {isDelete && (
+          <>
+            <span className="mb-3 flex font-semibold text-red-500">Excluir simulação?</span>
+            <div className="flex gap-3">
+              <Button
+                variant="danger"
+                icon={Trash2}
+                onClick={handleDeleteButton}
+                className="flex-1"
+              >
+                Excluir
+              </Button>
+              <Button variant="ghost" icon={X} onClick={toggleDelete}>
+                Cancelar
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   )
 }

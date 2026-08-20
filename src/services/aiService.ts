@@ -38,8 +38,20 @@ export interface InsightData {
   motivation: { content: string }
 }
 
+export interface ChatData {
+  id: string
+  role: 'user' | 'assistant'
+  message: string
+}
+
 export const getInsight = async (prompt: string) => {
   const response = await callGeminiAPI(prompt)
   const json = response.candidates[0].content.parts[0].text
   return JSON.parse(json) as InsightData
+}
+
+export const getAnswer = async (prompt: string) => {
+  const response = await callGeminiAPI(prompt)
+  const json = response.candidates[0].content.parts[0].text
+  return json
 }

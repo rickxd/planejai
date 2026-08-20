@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 
 import type { InsightData } from '@/services/aiService'
 
@@ -45,11 +45,11 @@ const statusStyles = {
   },
 }
 
-export function Content({ insight }: ContentProps) {
+export function Content({ insight, children }: PropsWithChildren<ContentProps>) {
   const status = statusStyles[insight.feasibility.status] ?? null
 
   return (
-    <div className="lg:max-h-93 lg:scrollbar-thin lg:[scrollbar-color:var(--border)_transparent] lg:overflow-y-auto lg:pr-2">
+    <div className="lg:max-h-78 lg:scrollbar-thin lg:[scrollbar-color:var(--border)_transparent] lg:overflow-y-auto lg:pr-2">
       <section className="flex flex-col gap-2">
         <div className="flex flex-col items-start gap-2 sm:flex-row">
           <span className="text-foreground text-sm font-semibold">🎯 Viabilidade da Meta</span>
@@ -88,6 +88,8 @@ export function Content({ insight }: ContentProps) {
         <SectionTitle>🚀 Mensagem Final</SectionTitle>
         <Paragraph>{insight.motivation.content}</Paragraph>
       </section>
+
+      {children}
     </div>
   )
 }
