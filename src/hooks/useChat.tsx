@@ -6,11 +6,6 @@ import { useSimulationStorage } from './useSimulationStorage'
 
 export const useChat = (id: string) => {
   const { getFormData, updateSimulation } = useSimulationStorage()
-  const mockAnswer = {
-    id: crypto.randomUUID(),
-    role: 'assistant',
-    message: 'Testando resposta.',
-  } as ChatData
 
   const isRequestPending = useRef(false)
   const [chat, setChat] = useState<ChatData[]>(() => {

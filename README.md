@@ -1,75 +1,124 @@
-# React + TypeScript + Vite
+# _Planej.ai - Bootcamp Santander 2026 - AI React Front-end_
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Sobre o projeto
 
-Currently, two official plugins are available:
+O planej.ai é uma aplicação web feita em React e TypeScript, funcionando como um educador financeiro integrado com inteligência artificial.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A aplicação permite que o usuário realize uma simulação financeira através de um formulário dividido em seis etapas. A partir dos dados fornecidos, são feitos cálculos e as informações são enviadas à IA, que gera um insight financeiro personalizado, com uma análise da situação atual e sugestões para ajudar o usuário a alcançar seu objetivo.
 
-## React Compiler
+O projeto foi desenvolvido como parte do Bootcamp Santander 2026 — AI React Front-end, da DIO em parceria com o Santander.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛠️ Tecnologias utilizadas
 
-## Expanding the ESLint configuration
+- **React** — construção da interface
+- **TypeScript** — tipagem e desenvolvimento
+- **Vite** — ambiente de desenvolvimento e build
+- **Tailwind CSS** — estilização e responsividade
+- **React Router** — gerenciamento das rotas
+- **Lucide React** — ícones da interface
+- **React Loading Skeleton** — estados de carregamento
+- **Google Gemini API** — geração dos diagnósticos e respostas do chat
+- **LocalStorage** — persistência das simulações e conversas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🔧 Ferramentas de desenvolvimento
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- ESLint
+- Prettier
+- Git / GitHub
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ✨ FUNCIONALIDADES
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 📝 Formulário multi-step:
 
+O formulário é dividido em seis etapas e coleta as seguintes informações:
+
+- renda mensal;
+- gasto mensal com despesas;
+- valor comprometido com dívidas por mês;
+- Meta financeira;
+- Custo da meta;
+- Prazo para alcançar a meta, em meses.
+
+![Tela do formulário](./screenshots/DesktopLight1.png)
+
+### 🤖 Diagnóstico financeiro
+
+Após o preenchimento do formulário, o usuário é direcionado para a página do resultado da simulação, onde são apresentados:
+
+- Os dados informados pelo usuário;
+- O cálculo da economia mensal necessária para alcançar a meta dentro do prazo definido;
+- Um insight financeiro personalizado gerado pela inteligência artificial;
+- Sugestões e possíveis ajustes baseados no perfil financeiro apresentado.
+
+![Tela da simulação](./screenshots/DesktopLight3.png)
+
+### 📲 Chat contextualizado
+
+O usuário também pode fazer perguntas para a IA, utilizando um chat contextualizado a partir da simulação e do insight personalizado.
+
+![Tela do chat](./screenshots/DesktopLight4.png)
+
+### 📚 Histórico de simulações:
+
+As simulações realizadas ficam disponíveis em uma página de histórico, onde o usuário pode:
+
+- Visualizar um resumo de cada simulação;
+- Acessar novamente seus resultados;
+- Excluir simulações que não deseja mais manter.
+
+![Tela do histórico](./screenshots/DesktopLight2.png)
+
+### 🌓 Tema claro e escuro
+
+A aplicação também possui suporte aos temas claro e escuro, permitindo alternar a aparência da interface conforme a preferência do usuário.
+
+![Tema escuro](./screenshots/DesktopDark1.png)
+
+### 📱 Design responsivo
+
+A interface foi desenvolvida para se adaptar a diferentes tamanhos de tela, proporcionando uma experiência adequada tanto em desktop quanto em dispositivos móveis.
+
+![Histórico desktop](./screenshots/DesktopDark2.png)
+![Histórico mobile](./screenshots/MobileDark2.png)
+
+# 🚀 Como executar o projeto
+
+### Pré-requisitos
+
+- Node.js
+- npm
+
+### Instalação
+
+```bash
+git clone ...
+cd planejai
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Variáveis de ambiente
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Crie um arquivo .env.local na raiz do projeto:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```.env.local
+VITE_GEMINI_API_KEY=sua_chave_aqui
+```
 
+Para obter uma chave, acesse o [Google AI Studio](https://aistudio.google.com) e clique em "Get API Key".
+
+### Executando o servidor
+
+Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível no endereço exibido pelo Vite.
+
+Também é possível gerar e rodar uma versão de produção:
+
+```bash
+npm run build
+npm run preview
 ```
