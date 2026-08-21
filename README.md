@@ -26,6 +26,14 @@ O projeto foi desenvolvido como parte do Bootcamp Santander 2026 — AI React Fr
 - Prettier
 - Git / GitHub
 
+### 🤖 Integração com inteligência artificial
+
+A aplicação utiliza a API do Google Gemini para gerar insights financeiros personalizados e responder às perguntas realizadas pelo usuário através do chat.
+
+Os dados fornecidos durante a simulação, juntamente com os cálculos realizados pela aplicação, são utilizados para construir o contexto enviado à IA.
+
+Cada simulação possui seu próprio histórico de mensagens, permitindo que o usuário continue a conversa mantendo o contexto da análise realizada.
+
 ## ✨ FUNCIONALIDADES
 
 ### 📝 Formulário multi-step:
@@ -122,3 +130,15 @@ Também é possível gerar e rodar uma versão de produção:
 npm run build
 npm run preview
 ```
+
+# ✅ Considerações Finais
+
+Este projeto foi desenvolvido como parte do Bootcamp Santander 2026 — AI React Front-end, realizado pela DIO em parceria com o Santander.
+
+Além das funcionalidades desenvolvidas durante as aulas, foram implementadas outras 2 features como desafio.
+
+A primeira foi o histórico de simulações. Essa implementação foi bem simples, e apenas criei novos componentes para exibir os dados que já estavam sendo armazenados no localStorage. Tentei manter tudo bem alinhado com o que já vinha sendo desenvolvido anteriormente.
+
+A segunda feature foi o chat contextualizado com a IA. Essa já foi um pouco mais desafiadora, mas consegui entender um pouco melhor como poderia usar os recursos do tailwind e do React para desenvolver uma solução sólida. Também acabei por modificar alguns componentes para conseguir encaixar a nova funcionalidade.
+
+Muito obrigado!
